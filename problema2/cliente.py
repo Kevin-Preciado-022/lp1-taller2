@@ -10,7 +10,7 @@ import socket
 HOST ="localhost"
 PORT = 9002
 # Solicitar mensaje al usuario por consola
-message = input("Mensaje: ")
+mensaje = input("Mensaje: ")
 
 # TODO: Crear un socket TCP/IP
 cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,7 +20,7 @@ cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # TODO: Conectar el socket al servidor en la dirección y puerto especificados
 cliente.connect((HOST, PORT))
 # Mostrar mensaje que se va a enviar
-print(f"Mensaje '{message}' enviado.")
+print(f"Mensaje '{mensaje}' enviado.")
 
 # TODO: Codificar el mensaje a bytes y enviarlo al servidor
 # sendall() asegura que todos los datos sean enviados
