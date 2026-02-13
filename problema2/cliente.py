@@ -32,4 +32,4 @@ respuesta = cliente.recv(1024)
 print("Mensaje recibido: ", '{respuesta}')
 
 # TODO: Cerrar la conexión con el servidor
-cliente.close
+cliente.close()
