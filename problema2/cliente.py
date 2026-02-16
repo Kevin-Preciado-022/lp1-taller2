@@ -24,8 +24,8 @@ print(f"Mensaje '{mensaje}' enviado.")
 
 # TODO: Codificar el mensaje a bytes y enviarlo al servidor
 # sendall() asegura que todos los datos sean enviados
-cliente.sendall(mensaje)
-print(f"Mensaje enviado: '{mensaje}'")
+cliente.sendall(mensaje.encode())
+print(f"Mensaje enviado: '{mensaje.decode}'")
 # TODO: Recibir datos del servidor (hasta 1024 bytes)
 respuesta = cliente.recv(1024)
 # Decodificar e imprimir los datos recibidos
