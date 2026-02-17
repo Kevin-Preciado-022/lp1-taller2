@@ -14,7 +14,7 @@ PORT: 9001
 # Lista para mantener todos los sockets de clientes conectados
 clients = []
 
-def handle_client(client_socket, client_nom):
+def handle_client(cliente, nombre):
     """
     Maneja la comunicación con un cliente específico en un hilo separado.
     
@@ -25,16 +25,22 @@ def handle_client(client_socket, client_nom):
     while True:
         try:
             # TODO: Recibir datos del cliente (hasta 1024 bytes)
-            
+            mensaje = cliente.recv(1024)
+            if not mensaje
+            break
+            except ConnectionResetError
+            clientes.remove(cliente_skt)
+            cliente.close()
+            break
             # Si no se reciben datos, el cliente se desconectó
             if not data:
                 break
                 
             # Formatear el mensaje con el nombre del cliente
-            message = f"{client_name}: {data.decode()}"
+            mensaje= f"{client_name}: {data.decode()}"
             
             # Imprimir el mensaje en el servidor
-            print(message)
+            print(mensaje)
             
             # TODO: Retransmitir el mensaje a todos los clientes excepto al remitente
 
