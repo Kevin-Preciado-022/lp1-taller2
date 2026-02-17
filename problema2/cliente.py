@@ -8,7 +8,7 @@ import socket
 
 # TODO: Definir la dirección y puerto del servidor
 HOST ="localhost"
-PORT = 9002
+PORT = 9000
 # Solicitar mensaje al usuario por consola
 mensaje = input("Mensaje: ")
 
@@ -25,11 +25,11 @@ print(f"Mensaje '{mensaje}' enviado.")
 # TODO: Codificar el mensaje a bytes y enviarlo al servidor
 # sendall() asegura que todos los datos sean enviados
 cliente.sendall(mensaje.encode())
-print(f"Mensaje enviado: '{mensaje.decode}'")
+print(f"Mensaje enviado: '{mensaje}'")
 # TODO: Recibir datos del servidor (hasta 1024 bytes)
 respuesta = cliente.recv(1024)
 # Decodificar e imprimir los datos recibidos
-print("Mensaje recibido: ", '{respuesta}')
+print(f"Respuesta del 'Echo': , '{respuesta.decode()}'")
 
 # TODO: Cerrar la conexión con el servidor
 cliente.close()

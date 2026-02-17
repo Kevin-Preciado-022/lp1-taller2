@@ -8,7 +8,7 @@ import socket
 
 # TODO: Definir la dirección y puerto del servidor
 HOST = "localhost"
-PORT = 9002
+PORT = 9000
 
 # TODO: Crear un socket TCP/IP
 servidor = socket.socket (socket.AF_INET, socket.SOCK_STREAM)
@@ -37,7 +37,7 @@ while True:
     # TODO: Recibir datos del cliente (hasta 1024 bytes)
     datos = cliente.recv(1024)
     # Si no se reciben datos, salir del bucle
-    if not data:
+    if not datos:
         break
     
     # Mostrar los datos recibidos (en formato bytes)
@@ -45,5 +45,5 @@ while True:
     # TODO: Enviar los mismos datos de vuelta al cliente (echo)
     cliente.sendall(datos) # ojo debe de ser binario no cadena
     # TODO: Cerrar la conexión con el cliente actual
-    servidor.close()
+    cliente.close()
 
