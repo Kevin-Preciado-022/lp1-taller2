@@ -40,7 +40,7 @@ def atender_cliente(cliente, nombre):
             print(mensaje)
             
             # TODO: Retransmitir el mensaje a todos los clientes excepto al remitente
-            broadcast(mensaje, cliente)
+            broadcast(mensaje.decode(), cliente)
 
             
         except ConnectionResetError:
