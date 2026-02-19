@@ -79,24 +79,29 @@ print("Servidor a la espera de conexiones ...")
 # Bucle principal para aceptar conexiones entrantes
 while True:
     # TODO: Aceptar una conexión entrante
+    cliente, direccion = servidor.accept()
+    print(f"Un cliente se conectó desde la dirección {direccion}")
     # client: nuevo socket para comunicarse con el cliente
+    
     # addr: dirección y puerto del cliente
     
-    print(f"Conexión realizada por {addr}")
+    print(f"Conexión realizada por {direccion}")
     
     # TODO: Recibir el nombre del cliente (hasta 1024 bytes) y decodificarlo
-    
-    # TODO: Agregar el socket del cliente a la lista de clientes conectados
+    nombre = cliente.recv(1024).decode()
+    # TODO: Agregar el socket del cliente a la lista de clientes conectados 
+    clientes.append(cliente)
     
     # Enviar mensaje de confirmación de conexión al cliente
-    client.send("ya estás conectado!".encode())
+    cliente.send("ya estás conectado!".encode())
     
     # Notificar a todos los clientes que un nuevo usuario se unió al chat
-    broadcast(f"{client_name} se ha unido al Chat.", client)
+    broadcast(f"{nombre} se ha unido al Chat.", cliente)
     
     # TODO: Crear e iniciar un hilo para manejar la comunicación con este cliente
     # target: función que se ejecutará en el hilo
+    hilo_cliente = threading.Thread(target=atender_cliente, args=(cliente, nombre))
     # args: argumentos que se pasarán a la función
-    client_handler = # ...
-    client_handler.start()
+    hilo_cliente.start()
+
 
