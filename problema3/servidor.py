@@ -9,12 +9,12 @@ import threading
 
 
 # TODO: Definir la dirección y puerto del servidor
-HOST: "localhots"
-PORT: 9001
+HOST ='localhost'
+PORT = 9000
 # Lista para mantener todos los sockets de clientes conectados
-clients = []
+clientes = []
 
-def handle_client(cliente, nombre):
+def atender_cliente(cliente, nombre):
     """
     Maneja la comunicación con un cliente específico en un hilo separado.
     
@@ -26,32 +26,30 @@ def handle_client(cliente, nombre):
         try:
             # TODO: Recibir datos del cliente (hasta 1024 bytes)
             mensaje = cliente.recv(1024)
-            if not mensaje
-            break
-            except ConnectionResetError
-            clientes.remove(cliente_skt)
-            cliente.close()
-            break
+            if not mensaje:
+                break
+
             # Si no se reciben datos, el cliente se desconectó
-            if not data:
+            if not mensaje:
                 break
                 
             # Formatear el mensaje con el nombre del cliente
-            mensaje= f"{client_name}: {data.decode()}"
+            print(f"{nombre}: {mensaje.decode()}")
             
             # Imprimir el mensaje en el servidor
             print(mensaje)
             
             # TODO: Retransmitir el mensaje a todos los clientes excepto al remitente
+            broadcast(mensaje, cliente)
 
             
         except ConnectionResetError:
             # Manejar desconexión inesperada del cliente
-            clients.remove(client_socket)
-            client_socket.close()
+            cliente.remove(cliente)
+            cliente.close()
             break
 
-def broadcast(message, sender_socket):
+def broadcast(mensaje, emisor):
     """
     Envía un mensaje a todos los clientes conectados excepto al remitente.
     
@@ -59,20 +57,23 @@ def broadcast(message, sender_socket):
         message: Mensaje a enviar (string)
         sender_socket: Socket del cliente que envió el mensaje original
     """
-    for client in clients:
-        if client != sender_socket:
+    for cliente in clientes:
+        if cliente != emisor:
             # TODO: Enviar el mensaje codificado a bytes a cada cliente
+            cliente.send(mensaje.encode())
 
 
 # TODO: Crear un socket TCP/IP
 # AF_INET: socket de familia IPv4
-# SOCK_STREAM: socket de tipo TCP (orientado a conexión)
+# SOCK_STREAM: socket de tipo TCP (orientado a conexión) 
+servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # TODO: Enlazar el socket a la dirección y puerto especificados
+servidor.bind((HOST, PORT))
 
 # TODO: Poner el socket en modo escucha
 # El parámetro define el número máximo de conexiones en cola
-
+servidor.listen()
 print("Servidor a la espera de conexiones ...")
 
 # Bucle principal para aceptar conexiones entrantes

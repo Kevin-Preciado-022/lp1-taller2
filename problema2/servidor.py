@@ -6,20 +6,20 @@ Objetivo: Crear un servidor TCP que devuelva exactamente lo que recibe del clien
 
 import socket
 
-# TODO: Definir la dirección y puerto del servidor
+# : Definir la dirección y puerto del servidor
 HOST = "localhost"
 PORT = 9000
 
-# TODO: Crear un socket TCP/IP
+# : Crear un socket TCP/IP
 servidor = socket.socket (socket.AF_INET, socket.SOCK_STREAM)
 servidor.bind ((HOST, PORT))
 servidor.listen()
 # AF_INET: socket de familia IPv4
 # SOCK_STREAM: socket de tipo TCP (orientado a conexión)
 
-# TODO: Enlazar el socket a la dirección y puerto especificados
+# : Enlazar el socket a la dirección y puerto especificados
 
-# TODO: Poner el socket en modo escucha
+# : Poner el socket en modo escucha
 # El parámetro define el número máximo de conexiones en cola
 
 # Bucle infinito para manejar múltiples conexiones (una a la vez)
@@ -27,14 +27,14 @@ while True:
 
     print("el servidor 'echo' a la espera de conexiones ...")
     
-    # TODO: Aceptar una conexión entrante
+    # : Aceptar una conexión entrante
     # accept() bloquea hasta que llega una conexión
     # conn: nuevo socket para comunicarse con el cliente
     # addr: dirección y puerto del cliente
     cliente, direccion = servidor.accept()
     print(f"un cliente se conecto desde la direccion {direccion}")
 
-    # TODO: Recibir datos del cliente (hasta 1024 bytes)
+    # : Recibir datos del cliente (hasta 1024 bytes)
     datos = cliente.recv(1024)
     # Si no se reciben datos, salir del bucle
     if not datos:
@@ -42,8 +42,8 @@ while True:
     
     # Mostrar los datos recibidos (en formato bytes)
     print("Datos Recibidos: ", datos)
-    # TODO: Enviar los mismos datos de vuelta al cliente (echo)
+    # : Enviar los mismos datos de vuelta al cliente (echo)
     cliente.sendall(datos) # ojo debe de ser binario no cadena
-    # TODO: Cerrar la conexión con el cliente actual
+    # : Cerrar la conexión con el cliente actual
     cliente.close()
 
