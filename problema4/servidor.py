@@ -12,7 +12,7 @@ import socket
 HOST = 'localhost'
 PORT = 9000
 
-class servidor(http.server.SimpleHTTPRequestHandler):
+class Servidor(http.server.SimpleHTTPRequestHandler):
     """
     Manejador personalizado de peticiones HTTP.
     Hereda de SimpleHTTPRequestHandler que proporciona funcionalidad básica
@@ -27,7 +27,7 @@ class servidor(http.server.SimpleHTTPRequestHandler):
     pass
     # Nota: Al no sobreescribir ningún método, se usa el comportamiento por defecto
     # que sirve archivos del directorio actual y genera listados de directorios
-    servidor = http.server.HTTPServer((HOST, PORT) , servidor)
+    servidor = http.server.HTTPServer((HOST, PORT) , Servidor)
     server.serve_forever()
 
 # TODO: Crear una instancia de servidor HTTP
