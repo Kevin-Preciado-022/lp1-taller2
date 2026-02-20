@@ -27,7 +27,7 @@ class Servidor(http.server.SimpleHTTPRequestHandler):
     pass
     # Nota: Al no sobreescribir ningún método, se usa el comportamiento por defecto
     # que sirve archivos del directorio actual y genera listados de directorios
-    servidor = http.server.HTTPServer((HOST, PORT) , Servidor)
+    servidor = http.server.HTTPServer((HOST, PORT) , servidor)
     servidor.serve_forever()
 
 # TODO: Crear una instancia de servidor HTTP
