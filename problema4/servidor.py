@@ -26,13 +26,11 @@ class Servidor(http.server.SimpleHTTPRequestHandler):
     """
     pass
     # Nota: Al no sobreescribir ningún método, se usa el comportamiento por defecto
-    # que sirve archivos del directorio actual y genera listados de directorios
-    servidor = http.server.HTTPServer((HOST, PORT) , servidor)
-    servidor.serve_forever()
-
+    # que sirve archivos del directorio actual y genera listados de directorios   
 # TODO: Crear una instancia de servidor HTTP
 # HTTPServer maneja las conexiones entrantes y delega el procesamiento
 # de peticiones al manejador especificado (servidor)
+servidor= http.server.HTTPServer((HOST, PORT) , Servidor)
 # Parámetros:
 # - (HOST, PORT): Dirección y puerto donde escuchar
 # - servidor: Clase que manejará las peticiones HTTP
@@ -40,4 +38,5 @@ class Servidor(http.server.SimpleHTTPRequestHandler):
 # TODO: Iniciar el servidor y ponerlo en ejecución continua
 # serve_forever() maneja peticiones indefinidamente hasta una interrupción
 # (normalmente con Ctrl+C en la terminal)
+servidor.serve_forever()
 
