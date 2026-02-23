@@ -40,6 +40,32 @@ while True:
         files = os.listdir(STORAGE)
         response = "\n".join(files) if files else "No hay archivos disponibles."
         cliente.sendall(response.encode())
-        
-    
-    
+    elif cmd == "UPLOAD" and len(parts) == 2:
+        Archivo = safe_filename(parts[1])
+        if os.path.exists(Archivo):
+            cliente.sendall(b"ERROR")
+        else:
+            cliente.sendall(b"READY")
+            with open(Archivo, "wb") as f:
+                while True:
+                    datos =cliente.recv(BUFFER_SIZE)
+                    if datos == b"EOF":
+                        break
+                    f.write(datos)
+                    cliente.sendall(f"CHECKSUM={checksum(Archivo)}".encode())
+                    
+    elif cmd == "DOWNLOAD" and len(parts) == 2:
+        Archivo = safe_filename(parts[1])
+        if os.path.exists(Archivo):
+            cliente.sendall(b"READY")
+            with open(Archivo, "rb") as f:
+                while True:
+                    chunk = f.read(BUFFER_SIZE)
+                    if not chunk:
+                        break
+                    cliente.sendall(chunk)
+            cliente.sendall(b"EOF")
+        else:
+            cliente.sendall(b"ERROR")
+    else:
+        cliente.sendall(b"ERROR")                    
