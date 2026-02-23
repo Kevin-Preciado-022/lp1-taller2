@@ -35,8 +35,6 @@ def send_command(datos, Archivo=None):
 
     cliente.close()
 
-# --- 🔹 Ejemplo directo ---
-send_command("DOWNLOAD prueba.txt", "descarga.txt")
 
 # --- 🔹 Bucle interactivo ---
 while True:
@@ -51,3 +49,7 @@ while True:
         send_command(datos, Archivo)
     else:
         send_command(datos)
+        
+        
+# --- 🔹 Ejemplo directo ---
+send_command("DOWNLOAD prueba.txt", "descarga.txt")
