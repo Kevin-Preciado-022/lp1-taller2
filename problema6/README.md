@@ -59,4 +59,3 @@ Mensaje privado enviado.
 > LIST
 [juan]: LIST[juan]: LIST> LIST
 [Privado de juan]: Hola
-> 

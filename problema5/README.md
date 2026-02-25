@@ -15,6 +15,7 @@
 - Validar integridad de archivos (checksum)
 - Manejo seguro de rutas de archivos
 
+problema 5
 Como funciona 
 ingresa este codigo en la terminal 1
 
@@ -37,4 +38,4 @@ Servidor: READY
 Servidor: CHECKSUM=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 > DOWNLOAD prueba1.txt
 Servidor: READY
-#listo# otra vez
+#listo#
